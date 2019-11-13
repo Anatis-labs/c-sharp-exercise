@@ -7,14 +7,12 @@ namespace exercise_06
         static void Main(string[] args)
         {
             /*
-             
             Exercise 6
             Write the program code that lets the user input 2 integers from the console.
             Then let the program output the biggest, smallest, difference ( - ), sum (+),
             product ( * ) and ratio ( / ) between the two numbers.
             Subjects Covered:
             Mathematical operators
-
              */
 
             Console.WriteLine("Add 2 numbers and lets do some math");
