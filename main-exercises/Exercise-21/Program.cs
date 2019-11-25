@@ -31,7 +31,7 @@ namespace Exercise_21
                 if (min > intList[i])
                     min = intList[i];               
             }
-
+            
             
 
             Console.WriteLine("The average is:  {0}",average);
