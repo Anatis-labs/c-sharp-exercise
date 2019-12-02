@@ -1,4 +1,6 @@
 ﻿using System;
+using PlayMoreGolf;
+
 
 namespace golf_program
 {
@@ -8,22 +10,25 @@ namespace golf_program
         static void Main(string[] args)
         {
             ApplicationManager am = new ApplicationManager();
+            int velocity;
+            int angle;
+            int trys = 0;
+  
 
-            am.SimulateStrike(45, 56);
-            am.SimulateStrike(45, 32);
-            am.DisplayStrikesStats();
-
-
-
-            /*while (Ge.Strikes.count < 10)
+            while (am.DistanceToCup >= 0 || trys  == 10)
             {
-                Ge.AskFoPlayerInput();
-                Ge.SimulateStrike(Ge.CurrentAngle, ge.);
-            
-            
-            }*/
+                Console.WriteLine("please enter angle: ");
+                angle = int.Parse(Console.ReadLine());
+                Console.WriteLine("Please enter velocity: ");
+                velocity = int.Parse(Console.ReadLine());
 
+                am.SimulateStrike(angle, velocity);
+                am.DisplayStrikesStats();
+                if (am.DistanceToCup < 0)
+                {
+                    am.DistanceToCup = -am.DistanceToCup;
+                }
+            }
         }
-
     }
 }

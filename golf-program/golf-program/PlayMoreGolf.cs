@@ -1,20 +1,11 @@
-﻿namespace golf_classes
+﻿namespace PlayMoreGolf
 {
     class Swing
     {
-        public Strike {
-
-
-
         public int Angle { get; set; }
-
         public int Velocity { get; set; }
-
         public double DistanceTravelled { get; set; }
-
-        
-
-
+        public double DistanceToCup { get; set; }
     }
 }
 
