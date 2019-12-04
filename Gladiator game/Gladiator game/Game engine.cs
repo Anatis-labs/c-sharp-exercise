@@ -6,17 +6,41 @@ namespace Gladiator_game
 {
     class Game_engine
     {
-        Fighters Fight = new Fighters();
-        Stats stats = new Stats();
-        public Game_engine()
-        { 
-        
-           
+        public int GladiatorDamage { get; set; }
+        public int EnemyDamage { get; set; }
+        public int GladiatorDamageTaken { get; set; }
+        public int EnemyDamageTaken { get; set; }
+        public int GladiatorHp { get; set; }
+        public int GladiatorStr { get; set; }
+        public int EnemyHp { get; set; }
+        public int EnemyStr { get; set; }
 
+        private Stats _stats = null;
+
+
+        private List<Stats> Statistics = new List<Stats>();
+
+
+
+
+        private Random random = new Random();
+
+        public void Gladiator()
+        {
+            GladiatorHp = random.Next(10, 20);
+            GladiatorStr = random.Next(10, 20);
         }
+
+        public void Enemy()
+        {
+            EnemyHp = random.Next(5, GladiatorHp);
+            EnemyStr = random.Next(5, GladiatorStr);
+        }
+
         public void Combat()
         {
-            while (Fight.EnemyHp > 0 || Fight.GladiatorHp > 0)
+            // fel definierat måste ändra nu kör den så länge åtminstone 1 av dom e sant
+            while (EnemyHp > 0 || GladiatorHp > 0)
             {
                 Console.WriteLine("press 1 for Strike");
                 int choice = Convert.ToInt32(Console.ReadLine());
@@ -24,11 +48,22 @@ namespace Gladiator_game
                 switch (choice)
                 {
                     case 1:
-                        stats.GladiatorDamage = Fight.GladiatorStr;
-                        stats.EnemyDamage = Fight.EnemyStr;
-                        Fight.GladiatorHp -= stats.EnemyDamage;
-                        Fight.EnemyHp -= stats.GladiatorDamage;
-
+                        GladiatorDamage = GladiatorStr;
+                        EnemyDamage = EnemyStr;
+                        GladiatorHp -= EnemyDamage;
+                        EnemyHp -= GladiatorDamage;
+                        
+                        
+                        // måste döpa om ett par för att det ska fungera
+                        // (listan finns definerad på stats taben)
+                        /*
+                        Stats stats = new Stats();
+                        stats.EnemyDamage = enemyDamage;
+                        stats.EnemyHp = enemyHp;
+                        stats.GladiatorDamage = gladiatorDamage;
+                        stats.GladiatorHp = gladiatorHp;
+                        _stats = stats;
+                        */
                         break;
                     case 2:
 

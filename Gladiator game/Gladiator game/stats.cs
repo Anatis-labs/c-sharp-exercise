@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-// skapar 
+﻿// skapar 
 
 namespace Gladiator_game
 {
     class Stats
     {
-       public int GladiatorDamage { get; set; }
-       public int EnemyDamage { get; set; }
-       public int GladiatorDamageTaken { get; set; }
-       public int EnemyDamageTaken { get; set; }
+        public int EnemyHp { get; set; }
+        public int enemyDamage { get; set; }
+        public int GladiatorDamage { get; set; }
+        public int GladiatorHp { get; set; }
 
     }
 }

@@ -8,7 +8,7 @@ namespace Gladiator_game
 {
     class reports
     {
-        private List <Stats> Statistics = new List <Stats>();
+        
 
         //public void DisplayFightingStats()
         //{

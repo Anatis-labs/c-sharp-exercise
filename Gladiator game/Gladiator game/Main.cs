@@ -7,7 +7,7 @@ namespace Gladiator_game
     {
         static void Main(string[] args)
         {
-            Fighters fight = new Fighters();
+            
             Game_engine combat = new Game_engine();
          
             Boolean loop = true;
@@ -32,14 +32,14 @@ namespace Gladiator_game
                 switch (choice)
                 {
                     case 1:
-                        fight.Gladiator();
-                        fight.Enemy();
+                        combat.Gladiator();
+                        combat.Enemy();
                         combat.Combat();
                        
-                        Console.WriteLine("glad hp: "+fight.GladiatorHp);
-                        Console.WriteLine("glad str: "+fight.GladiatorStr);
-                        Console.WriteLine("enemy hp: "+fight.EnemyHp);
-                        Console.WriteLine("enemy str: "+fight.EnemyStr);
+                        Console.WriteLine("glad hp: "+combat.GladiatorHp);
+                        Console.WriteLine("glad str: "+combat.GladiatorStr);
+                        Console.WriteLine("enemy hp: "+combat.EnemyHp);
+                        Console.WriteLine("enemy str: "+combat.EnemyStr);
                         
                         break;
                     case 2:
