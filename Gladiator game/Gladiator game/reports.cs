@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-// skapar 
+// skapar rapporter från rundorna
 
 namespace Gladiator_game
 {
-    class Stats
+    class reports
     {
-       
 
 
 

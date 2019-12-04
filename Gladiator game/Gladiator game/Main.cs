@@ -3,7 +3,7 @@ using Gladiator_game;
 
 namespace Gladiator_game
 {
-    class Program
+    class Main
     {
         static void Main(string[] args)
         {
@@ -20,10 +20,8 @@ namespace Gladiator_game
             {
                 Console.WriteLine("Now where do we wanna send the gladiator??");
                 Console.WriteLine("Choise 1: Enter the arena and fight untill death");
-                Console.WriteLine("Choise 2: Enter the armory");
-                Console.WriteLine("Choise 3: Place ur bets on how many rounds the challanger can live");
-                Console.WriteLine("Choise 4: See stats of the last fighter");
-                Console.WriteLine("Choise 5: Exit the game");
+                Console.WriteLine("Choise 2: See stats of the last fighter");
+                Console.WriteLine("Choise 3: Exit the game");
 
                 int choise = Convert.ToInt32(Console.ReadLine());
 
@@ -33,16 +31,10 @@ namespace Gladiator_game
 
 
                     case 2:
-
-
-                    case 3:
-
-
-                    case 4:
                         Game_engine ge = new Game_engine;
                         ge.DisplayFightingStats();
                         break;
-                    case 5:
+                    case 3:
                         loop = false;
                         break;
                     default:

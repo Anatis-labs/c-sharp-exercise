@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 
-// skapar 
+// skapa hero och motståndare
 
 namespace Gladiator_game
 {
-    class Stats
+    class Fighters
     {
-       
+    
+
+       void Gladiator ()
+        {
 
 
-
+        }
 
     }
 }
