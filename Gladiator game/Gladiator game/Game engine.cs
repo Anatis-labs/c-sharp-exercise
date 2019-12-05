@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Gladiator_game
 {
@@ -39,8 +38,8 @@ namespace Gladiator_game
 
         public void Combat()
         {
-            // fel definierat måste ändra nu kör den så länge åtminstone 1 av dom e sant
-            while (EnemyHp > 0 || GladiatorHp > 0)
+            Boolean loopWinner = true;
+            while (loopWinner)
             {
                 Console.WriteLine("press 1 for Strike");
                 int choice = Convert.ToInt32(Console.ReadLine());
@@ -52,8 +51,8 @@ namespace Gladiator_game
                         EnemyDamage = EnemyStr;
                         GladiatorHp -= EnemyDamage;
                         EnemyHp -= GladiatorDamage;
-                        
-                        
+
+
                         // måste döpa om ett par för att det ska fungera
                         // (listan finns definerad på stats taben)
                         /*
@@ -73,52 +72,24 @@ namespace Gladiator_game
                         break;
                     default:
                         break;
-
                 }
-
+                if (GladiatorHp <= 0)
+                {
+                    Console.WriteLine("Grats u won");
+                    GladiatorHp = 0;
+                    loopWinner = false;
+                    // lägga till någon kod som plockar bort ett namn ur listan och skriver ut namnet som att du har besegrat detta namnet.
+                }
+                if (EnemyHp <= 0)
+                {
+                    Console.WriteLine("Ur warrior have been slain");
+                    EnemyHp = 0;
+                    loopWinner = false;
+                }
             }
         }
 
 
-        //    {
-        //        HeroStrengh = random.Next(10, 20);
-        //        HeroVitality = random.Next(10, 20);
-        //        Damage = HeroStrengh / 2;
-        //        Hp = HeroVitality;
-        //        //TotalDamageDealt = 0;
 
-        //        Fights = new List<Fight>();
-        //    }
-
-        //    public int HeroStrengh { get; set; }
-        //    public int HeroVitality { get; set; }
-        //    public int Damage { get; set; }
-        //    public int Hp { get; set; }
-        //    public int MaxAttempts { get; set; }
-        //    public int TotalDamageDealt { get; set; }
-        //    public List<Fight> Fights { get; set; }
-
-        //    private int { Random random = new Random(); }
-
-        //private Fight lastFight = null;
-
-        //public void SimulateFight(int strengh, int vitality)
-        //{
-        //    int damageDealt = strengh / 2;
-        //    int hpHero = vitality - damageTaken;
-        //    TotalDamageDealt += damageDealt;
-        //    HealthLeft = MaxHp - CurretHp;
-
-        //    Fight strike = new Fight();
-        //    strike.DamageDealt = damageDealt;
-        //    strike.HpHero = hpHero;
-        //    strike.DamageTaken = damageTaken;
-        //    strike.HpEnemy = hpEnemy;
-
-        //    lastFight = strike;
-
-        //    Fights.Add(strike);
     }
 }
-
-   
