@@ -5,6 +5,18 @@ namespace Gladiator_game
 {
     class Game_engine
     {
+        public Game_engine()
+        {
+
+            GladiatorDamage = 0;
+            TotalStats = new List<Stat>();
+            Stats = new List<Stat>();
+        }
+
+
+        //public int OpponentsSlayed { get; set; }
+        //kanske använda för att hålla koll på hur många som blivit besegrade.
+
         public int GladiatorDamage { get; set; }
         public int EnemyDamage { get; set; }
         public int GladiatorDamageTaken { get; set; }
@@ -14,10 +26,12 @@ namespace Gladiator_game
         public int EnemyHp { get; set; }
         public int EnemyStr { get; set; }
 
-        private Stats _stats = null;
+        private Stat _stats = null;
+        private Stat _Totalstats = null;
 
+        public List<Stat> TotalStats { get; set; }
 
-        private List<Stats> Statistics = new List<Stats>();
+        public List<Stat> Stats { get; set; }
 
 
 
@@ -27,13 +41,25 @@ namespace Gladiator_game
         public void Gladiator()
         {
             GladiatorHp = random.Next(10, 20);
-            GladiatorStr = random.Next(10, 20);
+            GladiatorStr = random.Next(8, 15);
         }
 
         public void Enemy()
         {
             EnemyHp = random.Next(5, GladiatorHp);
             EnemyStr = random.Next(5, GladiatorStr);
+        }
+
+        public void DisplayFightingStats()
+        {
+            foreach (var item in Stats)
+            {
+                Console.WriteLine("Damage dealt: {0}", item.GladiatorDamage);
+                Console.WriteLine("Heroes hp: {0}", item.GladiatorHp);
+                Console.WriteLine("dmg: {0}", item.EnemyDamage);
+                Console.WriteLine("Enemys hp: {0}", item.EnemyHp);
+                Console.WriteLine("------------------------------------");
+            }
         }
 
         public void Combat()
@@ -52,17 +78,16 @@ namespace Gladiator_game
                         GladiatorHp -= EnemyDamage;
                         EnemyHp -= GladiatorDamage;
 
-
-                        // måste döpa om ett par för att det ska fungera
-                        // (listan finns definerad på stats taben)
-                        /*
-                        Stats stats = new Stats();
-                        stats.EnemyDamage = enemyDamage;
-                        stats.EnemyHp = enemyHp;
-                        stats.GladiatorDamage = gladiatorDamage;
-                        stats.GladiatorHp = gladiatorHp;
+                        Stat stats = new Stat(EnemyDamage, EnemyHp, GladiatorDamage, GladiatorHp);
+                        stats.EnemyDamage = EnemyDamage;
+                        stats.EnemyHp = EnemyHp;
+                        stats.GladiatorDamage = GladiatorDamage;
+                        stats.GladiatorHp = GladiatorHp;
                         _stats = stats;
-                        */
+                        Stats.Add(stats);
+
+                        DisplayFightingStats();
+
                         break;
                     case 2:
 
@@ -75,19 +100,45 @@ namespace Gladiator_game
                 }
                 if (GladiatorHp <= 0)
                 {
-                    Console.WriteLine("Grats u won");
+                    Console.WriteLine("Ur warrior have been slain by enemy name ");
+                    EnemyHp = 0;
+                    loopWinner = false;
+
+                    /*
+                    Stat stats = new Stat(GladiatorDamage, GladiatorHp, OpponentsSlayed);
+                    stats.TotalOpponentsSlayed++;
+
+                    foreach (var item in Stats)
+                    {
+                        stats.TotalGladiatorDamage += item.EnemyDamage;
+                        stats.TotalGladiatorHp += item.GladiatorHp;
+                        stats.TotalOpponentsSlayed += item.TotalOpponentsSlayed;
+
+                        Stats.Add(stats);
+                        */
+                    //lägga till namnet på den motståndaren som besegrade dig
+                }
+                if (EnemyHp <= 0)
+                {
+                    Console.WriteLine("Grats ur warrior won!! ");
                     GladiatorHp = 0;
                     loopWinner = false;
                     // lägga till någon kod som plockar bort ett namn ur listan och skriver ut namnet som att du har besegrat detta namnet.
                 }
-                if (EnemyHp <= 0)
-                {
-                    Console.WriteLine("Ur warrior have been slain");
-                    EnemyHp = 0;
-                    loopWinner = false;
-                }
+
+                /*
+                                Stat Totalstats = new Stat(EnemyDamage, EnemyHp, GladiatorDamage, GladiatorHp);
+                                Totalstats.TotalOpponentsSlayed = OpponentsSlayed;
+                                Totalstats.TotalGladiatorDamage = GladiatorDamage;
+                                Totalstats.TotalGladiatorHp = GladiatorHp;
+                                _Totalstats = Totalstats;
+                                Stats.Add(Totalstats);
+                  */
             }
         }
+
+
+
 
 
 

@@ -35,12 +35,12 @@ namespace Gladiator_game
                         combat.Gladiator();
                         combat.Enemy();
                         combat.Combat();
-                       
+                       /*
                         Console.WriteLine("glad hp: "+combat.GladiatorHp);
                         Console.WriteLine("glad str: "+combat.GladiatorStr);
                         Console.WriteLine("enemy hp: "+combat.EnemyHp);
                         Console.WriteLine("enemy str: "+combat.EnemyStr);
-                        
+                        */
                         break;
                     case 2:
                           
