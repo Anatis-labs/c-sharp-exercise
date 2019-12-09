@@ -6,27 +6,31 @@ namespace GladiatorGame
 {
     class Fight
     {
-  
-        /*
         public Fight()
         {
-
-            GladiatorDamage = 0;
-            TotalStats = new List<Stat>();
-            Stats = new List<Stat>();
+            Stat = new List<Stats>();
+        }
+        public void DisplayFightingStats()
+        {
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine("-------------------------- Stats ----------------------------");
+            Console.WriteLine("-------------------------------------------------------------");
+            foreach (var item in Stat)
+            {
+                Console.WriteLine("Total damage done: {0}", item.TotalDamage);
+                Console.WriteLine("Total strikes dealt: {0}", item.TotalStrikes);
+                Console.WriteLine("Around of rounds won: {0}", item.Rounds);
+                Console.WriteLine("------------------------------------");
+            }
         }
 
-        Stat stats = new Stat(EnemyDamage, EnemyHp, GladiatorDamage, GladiatorHp);
-        stats.EnemyDamage = EnemyDamage;
-                        stats.EnemyHp = EnemyHp;
-                        stats.GladiatorDamage = GladiatorDamage;
-                        stats.GladiatorHp = GladiatorHp;
-                        _stats = stats;
-                        Stats.Add(stats);
-*/
+        public int Rounds { get; set; }
+        public int TotalDamage { get; set; }
+        public int TotalStrikes { get; set; }
+        public List<Stats> Stat { get; set; }
 
-
-
+        //private Stats _stats = null;
+        
 
         public Fight(Player Gladiator, Player Opponent)
         {
@@ -83,6 +87,7 @@ namespace GladiatorGame
                 Gladiator.TotalStrikes += Gladiator.Strikes;
                 Gladiator.TotalDmg += Gladiator.Damage;
                 Gladiator.Health = -Gladiator.TotalDmg;
+
 
                 if (Opponent.Health <= 0)
                 {
@@ -144,10 +149,20 @@ namespace GladiatorGame
                 }
 
 
-                //Console.WriteLine();
+                // skapar en lista med attributer att sen lägga in i listan Stats.
+                Stats stats = new Stats(Gladiator.Wins, Gladiator.TotalDmg, Gladiator.TotalStrikes);
+                stats.Rounds = Gladiator.Wins;
+                stats.TotalDamage = Gladiator.TotalDmg;
+                stats.TotalStrikes = Gladiator.Strikes;
+                
+                Stat.Add(stats);
+  
+    //Console.WriteLine();
                 //Console.WriteLine($"Total damage by {Gladiator.Name} is {Gladiator.TotalDmg}");
                 //Console.WriteLine($"Total damage by {Opponent.Name} is {Opponent.TotalDmg}");
                 //Console.WriteLine();
+                //skapar en lista med objekt att lägga in i listan.
+
             }
         }
     }

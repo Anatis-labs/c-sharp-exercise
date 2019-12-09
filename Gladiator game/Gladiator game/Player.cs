@@ -50,7 +50,6 @@ namespace GladiatorGame
         }
 
         public List<String> EnemyNames = new List<String>();
-
         public void EnemyNameList()
         {
             EnemyNames.Add("Cassius Gabinius");

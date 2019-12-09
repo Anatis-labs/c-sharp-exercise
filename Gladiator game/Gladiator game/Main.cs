@@ -22,10 +22,12 @@ namespace GladiatorGame
     {
         static void Main(String[] args)
         {
-            Random rnd = new Random();
             Boolean loop = true;
+            Random rnd = new Random();
             Player enemyListNames = new Player();
+            Fight statistics = new Fight();
             enemyListNames.EnemyNameList();
+            
 
             Console.WriteLine("Welcome to the arena!!");
             Console.WriteLine("The challanger fights untill death, ppl place ur bets");
@@ -60,7 +62,8 @@ namespace GladiatorGame
                 Console.WriteLine("Choise 1: Enter the arena and fight untill death");
                 Console.WriteLine("Choise 2: Check stats from last fight");
                 Console.WriteLine("Choise 3: List of opponents");
-                Console.WriteLine("Choise 4: Exit the game");
+                Console.WriteLine("Choise 4: Stats");
+                Console.WriteLine("Choise 5: Exit the game");
                 Console.WriteLine("----------------------------------------------------");
 
                 int choise = Convert.ToInt32(Console.ReadLine());
@@ -93,6 +96,13 @@ namespace GladiatorGame
                         break;
 
                     case 4:
+                        statistics.DisplayFightingStats();
+
+                        //lägga till namnet på den motståndaren som besegrade dig
+
+                        break;
+
+                    case 5:
                         loop = false;
                         break;
 
