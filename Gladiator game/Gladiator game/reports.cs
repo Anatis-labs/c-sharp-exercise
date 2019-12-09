@@ -4,7 +4,7 @@ using System.Text;
 
 // skapar rapporter från rundorna
 
-namespace Gladiator_game
+namespace GladiatorGame
 {
     class reports
     {

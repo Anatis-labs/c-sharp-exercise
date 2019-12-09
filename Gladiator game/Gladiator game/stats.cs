@@ -1,19 +1,16 @@
-﻿// skapar 
+﻿using System;
 
-namespace Gladiator_game
+namespace GladiatorGame
 {
-    class Stat
+    class Stats
     {
-        public Stat(int enemyDamage, int enemyHp, int gladiatorDamage, int gladiatorHp)
+        public Stats(int enemyDamage, int enemyHp, int gladiatorDamage, int gladiatorHp)
         {
             EnemyHp = enemyHp;
             EnemyDamage = enemyDamage;
             GladiatorDamage = gladiatorDamage;
             GladiatorHp = gladiatorHp;
         }
-
-       
-
         public int EnemyHp { get; set; }
         public int EnemyDamage { get; set; }
         public int GladiatorDamage { get; set; }

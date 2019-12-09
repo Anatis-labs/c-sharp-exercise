@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace Gladiator_game
+namespace GladiatorGame
 {
-    class Game_engine
+    class Fight
     {
-        public Game_engine()
+        public Fight()
         {
 
             GladiatorDamage = 0;
@@ -13,134 +14,135 @@ namespace Gladiator_game
             Stats = new List<Stat>();
         }
 
-
-        //public int OpponentsSlayed { get; set; }
-        //kanske använda för att hålla koll på hur många som blivit besegrade.
-
-        public int GladiatorDamage { get; set; }
-        public int EnemyDamage { get; set; }
-        public int GladiatorDamageTaken { get; set; }
-        public int EnemyDamageTaken { get; set; }
-        public int GladiatorHp { get; set; }
-        public int GladiatorStr { get; set; }
-        public int EnemyHp { get; set; }
-        public int EnemyStr { get; set; }
-
-        private Stat _stats = null;
-        private Stat _Totalstats = null;
-
-        public List<Stat> TotalStats { get; set; }
-
-        public List<Stat> Stats { get; set; }
-
-
-
-
-        private Random random = new Random();
-
-        public void Gladiator()
-        {
-            GladiatorHp = random.Next(10, 20);
-            GladiatorStr = random.Next(8, 15);
-        }
-
-        public void Enemy()
-        {
-            EnemyHp = random.Next(5, GladiatorHp);
-            EnemyStr = random.Next(5, GladiatorStr);
-        }
-
-        public void DisplayFightingStats()
-        {
-            foreach (var item in Stats)
-            {
-                Console.WriteLine("Damage dealt: {0}", item.GladiatorDamage);
-                Console.WriteLine("Heroes hp: {0}", item.GladiatorHp);
-                Console.WriteLine("dmg: {0}", item.EnemyDamage);
-                Console.WriteLine("Enemys hp: {0}", item.EnemyHp);
-                Console.WriteLine("------------------------------------");
-            }
-        }
-
-        public void Combat()
-        {
-            Boolean loopWinner = true;
-            while (loopWinner)
-            {
-                Console.WriteLine("press 1 for Strike");
-                int choice = Convert.ToInt32(Console.ReadLine());
-
-                switch (choice)
-                {
-                    case 1:
-                        GladiatorDamage = GladiatorStr;
-                        EnemyDamage = EnemyStr;
-                        GladiatorHp -= EnemyDamage;
-                        EnemyHp -= GladiatorDamage;
-
-                        Stat stats = new Stat(EnemyDamage, EnemyHp, GladiatorDamage, GladiatorHp);
-                        stats.EnemyDamage = EnemyDamage;
+        Stat stats = new Stat(EnemyDamage, EnemyHp, GladiatorDamage, GladiatorHp);
+        stats.EnemyDamage = EnemyDamage;
                         stats.EnemyHp = EnemyHp;
                         stats.GladiatorDamage = GladiatorDamage;
                         stats.GladiatorHp = GladiatorHp;
                         _stats = stats;
                         Stats.Add(stats);
 
-                        DisplayFightingStats();
 
+
+
+
+        public Fight(Player Gladiator, Player Opponent)
+        {
+
+            while (true)
+            {
+                Gladiator.Damage = 0;
+                Opponent.Damage = 0;
+
+                Console.WriteLine($"Gladiator HP {Gladiator.Health}");
+                Console.WriteLine($"Gladiator Str {Gladiator.Strengh}");
+                Console.WriteLine();
+                Console.WriteLine($"Opponent HP {Opponent.Health}");
+                Console.WriteLine($"Opponent Str {Opponent.Strengh}");
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine();
+                Console.WriteLine("-------------------------");
+                Console.WriteLine("Choose your strike method");
+                Console.WriteLine("1. Fist");
+                Console.WriteLine("2. Kick");
+                Console.WriteLine("3. Knee");
+                Console.WriteLine("-------------------------");
+
+                var choice = Convert.ToInt32(Console.ReadLine());
+
+                switch (choice)
+                {
+                    case 1:
+                        int s1 = Gladiator.Fist();
+                        Console.WriteLine($"Fist strike! Damage by {Gladiator.Name}: {s1}");
+                        Console.WriteLine();
+                        Opponent.Health -= s1;
+                        Gladiator.Damage = s1;
                         break;
                     case 2:
-
+                        int s2 = Gladiator.Kick();
+                        Console.WriteLine($"Kick strike! Damage by {Gladiator.Name}: {s2}");
+                        Console.WriteLine();
+                        Opponent.Health -= s2;
+                        Gladiator.Damage = s2;
                         break;
                     case 3:
-
+                        int s3 = Gladiator.KneeStrike();
+                        Console.WriteLine($"Knee strike! Damage by {Gladiator.Name}: {s3}");
+                        Console.WriteLine();
+                        Opponent.Health -= s3;
+                        Gladiator.Damage = s3;
                         break;
                     default:
                         break;
                 }
-                if (GladiatorHp <= 0)
+                
+                Gladiator.Strikes++;
+                Gladiator.TotalStrikes += Gladiator.Strikes;
+                Gladiator.TotalDmg += Gladiator.Damage;
+                
+
+                if (Opponent.Health <= 0)
                 {
-                    Console.WriteLine("Ur warrior have been slain by enemy name ");
-                    EnemyHp = 0;
-                    loopWinner = false;
-
-                    /*
-                    Stat stats = new Stat(GladiatorDamage, GladiatorHp, OpponentsSlayed);
-                    stats.TotalOpponentsSlayed++;
-
-                    foreach (var item in Stats)
-                    {
-                        stats.TotalGladiatorDamage += item.EnemyDamage;
-                        stats.TotalGladiatorHp += item.GladiatorHp;
-                        stats.TotalOpponentsSlayed += item.TotalOpponentsSlayed;
-
-                        Stats.Add(stats);
-                        */
-                    //lägga till namnet på den motståndaren som besegrade dig
-                }
-                if (EnemyHp <= 0)
-                {
-                    Console.WriteLine("Grats ur warrior won!! ");
-                    GladiatorHp = 0;
-                    loopWinner = false;
-                    // lägga till någon kod som plockar bort ett namn ur listan och skriver ut namnet som att du har besegrat detta namnet.
+                    Console.WriteLine("Opponent knocked!");
+                    Gladiator.Wins++;
+                    Console.WriteLine($"{Gladiator.Name} has won {Gladiator.Wins} times");
+                    Console.WriteLine($"With {Gladiator.Strikes} strikes!");
+                    Console.WriteLine($"Total damage by {Gladiator.Name} was {Gladiator.Damage}");
+                    break;
                 }
 
-                /*
-                                Stat Totalstats = new Stat(EnemyDamage, EnemyHp, GladiatorDamage, GladiatorHp);
-                                Totalstats.TotalOpponentsSlayed = OpponentsSlayed;
-                                Totalstats.TotalGladiatorDamage = GladiatorDamage;
-                                Totalstats.TotalGladiatorHp = GladiatorHp;
-                                _Totalstats = Totalstats;
-                                Stats.Add(Totalstats);
-                  */
+                Random rnd = new Random();
+                choice = rnd.Next(1, 3);
+
+                switch (choice)
+                {
+                    case 1:
+                        int o1 = Opponent.Fist();
+                        Console.WriteLine($"Fist strike! Damage by {Opponent.Name}: {o1}");
+                        Console.WriteLine();
+                        Gladiator.Health -= o1;
+                        Opponent.Damage = o1;
+                        break;
+                    case 2:
+                        int o2 = Opponent.Kick();
+                        Console.WriteLine($"Kick strike! Damage by {Opponent.Name}: {o2}");
+                        Console.WriteLine();
+                        Gladiator.Health -= o2;
+                        Opponent.Damage = o2;
+                        break;
+                    case 3:
+                        int o3 = Opponent.KneeStrike();
+                        Console.WriteLine($"Knee strike! Damage by {Opponent.Name}: {o3}");
+                        Console.WriteLine();
+                        Gladiator.Health -= o3;
+                        Opponent.Damage = o3;
+                        break;
+                    default:
+                        break;
+                }
+                
+                Opponent.Strikes++;
+                Opponent.TotalStrikes += Opponent.Strikes;
+                Opponent.TotalDmg += Opponent.Damage;
+                
+
+                if (Gladiator.Health <= 0)
+                {
+                    Console.WriteLine("Gladiator knocked!");
+                    Opponent.Wins++;
+                    Console.WriteLine($"{Opponent.Name} has won {Opponent.Wins} times");
+                    Console.WriteLine($"With {Opponent.Strikes} strikes!");
+                    Console.WriteLine($"Total damage by {Opponent.Name} was {Opponent.Damage}");
+                    break;
+                }
+
+
+                //Console.WriteLine();
+                //Console.WriteLine($"Total damage by {Gladiator.Name} is {Gladiator.TotalDmg}");
+                //Console.WriteLine($"Total damage by {Opponent.Name} is {Opponent.TotalDmg}");
+                //Console.WriteLine();
             }
         }
-
-
-
-
-
-
     }
 }
