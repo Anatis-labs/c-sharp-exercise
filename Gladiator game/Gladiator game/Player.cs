@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 // skapa hero och motståndare
 
@@ -14,7 +15,12 @@ namespace GladiatorGame
             Name = name;
         }
 
-
+        public Player(String name, int str, int vit)
+        {
+            Name = name;
+            Strengh = str;
+            Health = vit;
+        }
 
         public String Name { get; set; }
         public int Damage { get; set; }
@@ -43,20 +49,20 @@ namespace GladiatorGame
             return damage;
         }
 
-        List<string> enemyNames = new List<string>();
+        public List<String> EnemyNames = new List<String>();
 
-            enemyNames.Add("Cassius Gabinius");
-            enemyNames.Add("Marcellus Burrienus");
-            enemyNames.Add("Agaza Kingspell");
-            enemyNames.Add("Jaenwilliams Pomar");
-            enemyNames.Add("Antibar Satanbennett");
-            enemyNames.Add("Roberfang O'neilllok");
-            enemyNames.Add("Drusprice Rosenker");
-            enemyNames.Add("Peaknee Glenalvare");
-            enemyNames.Add("Ortiphine Jonefur");
-            enemyNames.Add("Willpatterson Graylok");
-        
-
-
+        public void EnemyNameList()
+        {
+            EnemyNames.Add("Cassius Gabinius");
+            EnemyNames.Add("Marcellus Burrienus");
+            EnemyNames.Add("Agaza Kingspell");
+            EnemyNames.Add("Jaenwilliams Pomar");
+            EnemyNames.Add("Antibar Satanbennett");
+            EnemyNames.Add("Roberfang O'neilllok");
+            EnemyNames.Add("Drusprice Rosenker");
+            EnemyNames.Add("Peaknee Glenalvare");
+            EnemyNames.Add("Ortiphine Jonefur");
+            EnemyNames.Add("Willpatterson Graylok");
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+
 
 namespace GladiatorGame
 {
@@ -16,6 +17,8 @@ namespace GladiatorGame
         public int GladiatorDamage { get; set; }
         public int GladiatorHp { get; set; }
 
+
+
         /*
         public Stat(int totalOpponentsSlayed, int totalgladiatorDamage, int totalgladiatorHp)
         {
@@ -29,8 +32,6 @@ namespace GladiatorGame
         public int TotalGladiatorDamage { get; set; }
         public int TotalGladiatorHp { get; set; }
         */
-
-
 
     }
 }

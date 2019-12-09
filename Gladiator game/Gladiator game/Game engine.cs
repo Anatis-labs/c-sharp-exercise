@@ -6,6 +6,8 @@ namespace GladiatorGame
 {
     class Fight
     {
+  
+        /*
         public Fight()
         {
 
@@ -21,14 +23,14 @@ namespace GladiatorGame
                         stats.GladiatorHp = GladiatorHp;
                         _stats = stats;
                         Stats.Add(stats);
-
+*/
 
 
 
 
         public Fight(Player Gladiator, Player Opponent)
         {
-
+            Player enemyList = new Player();
             while (true)
             {
                 Gladiator.Damage = 0;
@@ -80,11 +82,12 @@ namespace GladiatorGame
                 Gladiator.Strikes++;
                 Gladiator.TotalStrikes += Gladiator.Strikes;
                 Gladiator.TotalDmg += Gladiator.Damage;
-                
+                Gladiator.Health = -Gladiator.TotalDmg;
 
                 if (Opponent.Health <= 0)
                 {
                     Console.WriteLine("Opponent knocked!");
+                    Opponent.Health = 0;
                     Gladiator.Wins++;
                     Console.WriteLine($"{Gladiator.Name} has won {Gladiator.Wins} times");
                     Console.WriteLine($"With {Gladiator.Strikes} strikes!");
@@ -130,10 +133,13 @@ namespace GladiatorGame
                 if (Gladiator.Health <= 0)
                 {
                     Console.WriteLine("Gladiator knocked!");
+                    Gladiator.Health = 0;
                     Opponent.Wins++;
                     Console.WriteLine($"{Opponent.Name} has won {Opponent.Wins} times");
                     Console.WriteLine($"With {Opponent.Strikes} strikes!");
                     Console.WriteLine($"Total damage by {Opponent.Name} was {Opponent.Damage}");
+                    Gladiator.Health = rnd.Next(5, 10);   // Generate value for Strenght for each combat
+                    Gladiator.Strengh = rnd.Next(10, 20);    // Generate value for Health for each combat
                     break;
                 }
 
