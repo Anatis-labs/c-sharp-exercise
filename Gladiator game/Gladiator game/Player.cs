@@ -8,7 +8,7 @@ namespace Players
     {
         public Player() { }
 
-        public Player(string Name, int Health, int Strenght)        //TODO do we need this??? NOT IN USE
+        public Player(string Name, int Health, int Strenght)
         {
             this.Name = Name;
             this.Health = Health;
@@ -54,6 +54,19 @@ namespace Players
         }
 
         public List<String> EnemyNames = new List<String>();
+        public List<String> ItemList = new List<String>();
+
+        public void Itemlist()
+        {
+            EnemyNames.Add("Helm"); //+1 v
+            EnemyNames.Add("Chest"); // +2v
+            EnemyNames.Add("Gloves"); // +1d
+            EnemyNames.Add("Legs");  // +1v
+            EnemyNames.Add("Shoes"); //+1v
+            EnemyNames.Add("Sword"); // +2d
+            EnemyNames.Add("Shield"); //+2v
+        }
+
 
         public void EnemyNamelist()
         {
@@ -74,5 +87,4 @@ namespace Players
             EnemyNames.RemoveAt(0);
         }
     }
-
 }

@@ -8,7 +8,10 @@ namespace GladiatorGame
 {
     class reports
     {
-        
+      
+
+
+
 
         //public void DisplayFightingStats()
         //{

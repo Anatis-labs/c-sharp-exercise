@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Players;
@@ -8,20 +7,8 @@ namespace GladiatorGame
 {
     class Fight
     {
-        public Fight()
-        { Stat = new List<Stats>(); }
 
-        public List<Stats> Stat { get; set; }
-
-        //private Stats _stats = null;        
-        public int wins { get; set; }
-        public int strikes { get; set; }
-        public int damage { get; set; }
-
-
-        
-
-        public Fight(Player Gladiator, Player Opponent, Player Enemys)
+        public Fight(Player Gladiator, Player Opponent, Player Enemys, Statistics S)
         {
             var P1 = Gladiator;
             var P2 = Opponent;
@@ -94,7 +81,6 @@ namespace GladiatorGame
                 Enemys.TotalStrikes += Opponent.Strikes;
                 Enemys.TotalDmg += Opponent.Damage;
 
-
                 if (P2.Health <= 0)
                 {
                     Console.WriteLine($"{P2.Name} knocked!");
@@ -104,6 +90,14 @@ namespace GladiatorGame
                     Console.WriteLine($"{P1.Name} has won {P1.Wins} times");
                     Console.WriteLine($"Total damage by {P1.Name} was {P1.FightDmg}");
                     Console.WriteLine($"{P2.Name} made damage by: {P2.FightDmg}");
+                    if (Gladiator.Health <= 0)
+                    {
+                        S.AddToList(Enemys.Round, Gladiator.Strikes, Gladiator.FightDmg);
+                    }
+                    else
+                    {
+                        S.AddToList(Enemys.Round, Gladiator.Strikes, Gladiator.FightDmg, Opponent.Name);
+                    }
 
                     Gladiator.FightDmg = 0;
                     Gladiator.Strikes = 0;
@@ -129,25 +123,11 @@ namespace GladiatorGame
                 else
                 {
                     P1 = Gladiator;
-                    P2 = Opponent;                  
+                    P2 = Opponent;
                 }
-            }            
-            damage = Convert.ToInt32(P1.Damage);
-
-            wins++;
-            // skapar en lista med attributer att sen lägga in i listan Stats.
-            Stats stats = new Stats(wins, P1.TotalDmg, Gladiator.TotalStrikes);
-            stats.Rounds = wins;
-            stats.TotalDamage = P1.TotalDmg;
-            stats.TotalStrikes = Gladiator.TotalStrikes;
-
-
-            // senaste fighten (om vi behöver det vet jag inte)
-            //_stats = stats;
-
-            // ska spara till vår stats lista (klassen)
-            Stat.Add(stats);
+            }
         }
+
         public void DisplayStartInfo(Player Gladiator, Player Opponent, Player Enemys)
         {
             Console.WriteLine();
