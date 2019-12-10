@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GladiatorGame;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,10 @@ namespace Players
 {
     class Player
     {
-        public Player() { }
+        public Player() 
+        {
+            
+        }
 
         public Player(string Name, int Health, int Strenght)
         {
@@ -37,7 +41,7 @@ namespace Players
         // methods to calculate damage // TODO random for damage calculation???
         public int Fist()
         {
-            int dmg = Strenght / 2;
+            int dmg =  Strenght/2;
             return dmg;
         }
 

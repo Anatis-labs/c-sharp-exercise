@@ -10,6 +10,7 @@ namespace GladiatorGame
     {
         public Fight(Player Gladiator, Player Opponent, Player Enemys, Statistics S)
         {
+            Equipment items = new Equipment();
             var P1 = Gladiator;
             var P2 = Opponent;
 
@@ -20,11 +21,14 @@ namespace GladiatorGame
                 P2 = Gladiator;
             }
 
+            P1.Damage += items.Weapon;
+            P1.Health += P1.Health + items.Armor;
+
             while (true)
-            {
+            {               
                 int choice;
                 Gladiator.Damage = 0;
-                Opponent.Damage = 0;
+                Opponent.Damage = 0;              
 
                 DisplayStartInfo(Gladiator, Opponent, Enemys);
 
