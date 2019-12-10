@@ -13,16 +13,16 @@ namespace GladiatorGame
             Equipment items = new Equipment();
             var P1 = Gladiator;
             var P2 = Opponent;
-
             Random rnd = new Random();
+
             if (rnd.Next(0, 10) < 5)
             {
                 P1 = Opponent;
                 P2 = Gladiator;
             }
 
-            P1.Damage += items.Weapon;
-            P1.Health += P1.Health + items.Armor;
+            //P1.Damage += items.Weapon;
+            //P1.Health += P1.Health + items.Armor;
 
             while (true)
             {               
@@ -101,8 +101,30 @@ namespace GladiatorGame
                     else
                     {
                         S.AddToList(Enemys.Round, Gladiator.Strikes, Gladiator.FightDmg, Opponent.Name);
-                    }
 
+                        Console.WriteLine();
+                        Console.WriteLine("Chose if u wanna try ur luck on a weapon or armor");
+                        Console.WriteLine("1 for armor hunting");
+                        Console.WriteLine("2 for weapon hunting");
+                        Console.WriteLine("3 hardcore, no weapon or amror hunt");
+                        int itemChoise = Convert.ToInt32(Console.ReadLine());
+                        switch (itemChoise)
+                        {
+                            case 1:
+                                items.ArmorEquipemnt();
+                                break;
+
+                            case 2:
+                                items.WeaponEquipment();
+                                break;
+
+                            default:
+                                Console.WriteLine("brave warrior");
+                                break;
+                        }
+                        Console.WriteLine();
+                    }
+                  
                     Gladiator.FightDmg = 0;
                     Gladiator.Strikes = 0;
                     Enemys.Round++;

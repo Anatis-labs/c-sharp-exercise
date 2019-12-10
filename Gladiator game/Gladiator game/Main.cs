@@ -53,7 +53,7 @@ namespace GladiatorGame
                     Console.WriteLine($"All Opponents has been beaten. You are the champion!!!!");
                     break;      //break out of the game
                 }
-                Player Opponent = new Player(Gladiator.EnemyNames[0], rnd.Next(10, 18), rnd.Next(5, 10), 0, 0);     //Generate new opponent for each fight
+                Player Opponent = new Player(Gladiator.EnemyNames[0], rnd.Next(10, 15), rnd.Next(5, 10), 0, 0);     //Generate new opponent for each fight
 
                 Console.WriteLine();
                 Console.WriteLine("Now where do we wanna send the gladiator??");
