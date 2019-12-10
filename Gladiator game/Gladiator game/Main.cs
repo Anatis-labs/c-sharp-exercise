@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Players;
 
 //I denna uppgift ska du skapa ett gladiatorspel, där hjälten slåss mot x antal motståndare, tills han blir besegrad.
 //Följande funktioanlitet ska finnas med:
@@ -22,12 +23,9 @@ namespace GladiatorGame
     {
         static void Main(String[] args)
         {
-            Boolean loop = true;
             Random rnd = new Random();
-            Player enemyListNames = new Player();
-            Fight statistics = new Fight();
-            enemyListNames.EnemyNameList();
-            
+            Boolean loop = true;
+            Player Enemys = new Player();
 
             Console.WriteLine("Welcome to the arena!!");
             Console.WriteLine("The challanger fights untill death, ppl place ur bets");
@@ -39,21 +37,22 @@ namespace GladiatorGame
             Console.WriteLine($"Welcome {name}, lets see how strong you are today");
             Console.WriteLine("----------------------------------------------------");
 
-            //Create Gladiator TODO move to player
-            Player Gladiator = new Player();
-            Gladiator.Name = name;
-            Gladiator.Health = rnd.Next(5, 10);   // Generate value for Strenght for each combat
-            Gladiator.Strengh = rnd.Next(10, 20);    // Generate value for Health for each combat
+            //Create Gladiator 
+            Player Gladiator = new Player(name, rnd.Next(10, 20), rnd.Next(5, 10), 0, 0);
 
-            //Create Opponent (Enemy)
-            Player Opponent = new Player();
-            int op = rnd.Next(1, enemyListNames.EnemyNames.Count);
+            Gladiator.EnemyNamelist();
+            Enemys.Round = 1;       //start counting rounds on 1
 
             while (loop)
             {
-                Opponent.Name = enemyListNames.EnemyNames[op];
-                Opponent.Health = rnd.Next(5, 10);     // Generate value for Health for each combat
-                Opponent.Strengh = rnd.Next(5, 10);    // Generate value for Strenght for each combat
+                int E = Gladiator.EnemyNames.Count;
+                Console.WriteLine($"Enemys left: {E}");
+                if (Gladiator.EnemyNames.Count <= 0)    //if enemylist is empty end game
+                {
+                    Console.WriteLine($"All Opponents has been beaten. You are the champion!!!!");
+                    break;      //break out of the game
+                }
+                Player Opponent = new Player(Gladiator.EnemyNames[0], rnd.Next(10, 18), rnd.Next(5, 10), 0, 0);     //Generate new opponent for each fight
 
                 Console.WriteLine();
                 Console.WriteLine("Now where do we wanna send the gladiator??");
@@ -61,9 +60,9 @@ namespace GladiatorGame
 
                 Console.WriteLine("Choise 1: Enter the arena and fight untill death");
                 Console.WriteLine("Choise 2: Check stats from last fight");
-                Console.WriteLine("Choise 3: List of opponents");
-                Console.WriteLine("Choise 4: Stats");
-                Console.WriteLine("Choise 5: Exit the game");
+                Console.WriteLine("Choise 3: Enemy list");
+                Console.WriteLine("Choise 4: Coming soon!");
+                Console.WriteLine("Choise 9: Exit the game");
                 Console.WriteLine("----------------------------------------------------");
 
                 int choise = Convert.ToInt32(Console.ReadLine());
@@ -71,38 +70,34 @@ namespace GladiatorGame
                 switch (choise)
                 {
                     case 1:
-                        _ = new Fight(Gladiator, Opponent);
+                        _ = new Fight(Gladiator, Opponent, Enemys);
                         break;
 
                     case 2:
-
+                        Console.WriteLine();
+                        Console.WriteLine($"Rounds played: {Enemys.Round - 1} ");       // for displaying correct amount of rounds
                         Console.WriteLine();
                         Console.WriteLine($"Gladiator wins: {Gladiator.Wins}");
-                        //Console.WriteLine($"Damage dealt by gladiator {Gladiator.TotalDmg}");
-                        //Console.WriteLine($"Strikes by gladiator {Gladiator.TotalStrikes}");
+                        Console.WriteLine($"Damage dealt by gladiator {Gladiator.TotalDmg}");
                         Console.WriteLine();
-                        Console.WriteLine($"Opponent wins: {Opponent.Wins}");
-                        //Console.WriteLine($"Damage dealt by opponent {Opponent.TotalDmg}");
-                        //Console.WriteLine($"Strikes by opponent {Opponent.TotalStrikes}");
-                        Console.WriteLine();
-                        Console.WriteLine("TEST");
-
+                        Console.WriteLine($"Opponent wins: {Enemys.Wins}");
+                        Console.WriteLine($"Damage dealt by opponent {Enemys.TotalDmg}");
 
                         break;
 
                     case 3:
-                        foreach (var item in enemyListNames.EnemyNames)
+                        Console.WriteLine();
+                        foreach (var item in Gladiator.EnemyNames)
+                        {
                             Console.WriteLine(item);
+                        }
+                        Console.WriteLine();
                         break;
 
                     case 4:
-                        statistics.DisplayFightingStats();
-
-                        //lägga till namnet på den motståndaren som besegrade dig
-
+                        Console.WriteLine("Coming soon!!!");
                         break;
-
-                    case 5:
+                    case 9:
                         loop = false;
                         break;
 
@@ -110,7 +105,7 @@ namespace GladiatorGame
                         Console.WriteLine("You must choose a number between 1 - 4!");
                         break;
 
-                }               
+                }
             }
         }
     }

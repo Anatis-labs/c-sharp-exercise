@@ -6,7 +6,7 @@ namespace GladiatorGame
 {
     class Stats
     {
-
+        public Stats() { }
         //int enemyDamage, int enemyHp, int gladiatorDamage, int gladiatorHp
         public Stats(int rounds, int totalStrikes, int totalDamage)
         {

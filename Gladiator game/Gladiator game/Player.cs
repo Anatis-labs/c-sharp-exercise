@@ -1,56 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-// skapa hero och motståndare
-
-namespace GladiatorGame
+namespace Players
 {
     class Player
     {
-        public Player()
+        public Player() { }
+
+        public Player(string Name, int Health, int Strenght)        //TODO do we need this??? NOT IN USE
         {
+            this.Name = Name;
+            this.Health = Health;
+            this.Strenght = Strenght;
         }
-        public Player(String name)
+        public Player(string Name, int Health, int Strenght, int Strikes, int Damage)
         {
-            Name = name;
+            this.Name = Name;
+            this.Health = Health;
+            this.Strenght = Strenght;
+            this.Strikes = Strikes;
+            this.Damage = Damage;
         }
 
-        public Player(String name, int str, int vit)
-        {
-            Name = name;
-            Strengh = str;
-            Health = vit;
-        }
-
-        public String Name { get; set; }
-        public int Damage { get; set; }
+        public string Name { get; set; }
         public int Health { get; set; }
-        public int Strikes { get; set; }
+        public int Strenght { get; set; }
         public int Wins { get; set; }
-        public int Strengh { get; set; }
+        public int Strikes { get; set; } // by fight
         public int TotalStrikes { get; set; }
+        public int Damage { get; set; } //by fight
         public int TotalDmg { get; set; }
+        public int FightDmg { get; set; }
+        public int Round { get; set; }
 
-
-
+        // methods to calculate damage // TODO random for damage calculation???
         public int Fist()
         {
-            int damage = Strengh / 2;
-            return damage;
+            int dmg = Strenght / 2;
+            return dmg;
         }
+
         public int Kick()
         {
-            int damage = Strengh;
-            return damage;
+            int dmg = Strenght;
+            return dmg;
         }
-        public int KneeStrike()
+
+        public int Knee()
         {
-            int damage = Strengh / 3;
-            return damage;
+            int dmg = Strenght / 3;
+            return dmg;
         }
 
         public List<String> EnemyNames = new List<String>();
-        public void EnemyNameList()
+
+        public void EnemyNamelist()
         {
             EnemyNames.Add("Cassius Gabinius");
             EnemyNames.Add("Marcellus Burrienus");
@@ -63,5 +68,11 @@ namespace GladiatorGame
             EnemyNames.Add("Ortiphine Jonefur");
             EnemyNames.Add("Willpatterson Graylok");
         }
+
+        public void RemoveEnemy()
+        {
+            EnemyNames.RemoveAt(0);
+        }
     }
+
 }
