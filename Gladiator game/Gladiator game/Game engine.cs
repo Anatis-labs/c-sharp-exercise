@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Players;
 
+
 namespace GladiatorGame
 {
     class Fight
     {
-
         public Fight(Player Gladiator, Player Opponent, Player Enemys, Statistics S)
         {
             var P1 = Gladiator;
