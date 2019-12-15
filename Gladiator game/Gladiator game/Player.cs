@@ -1,24 +1,21 @@
-﻿using GladiatorGame;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Players
+namespace GladiatorGame
 {
-    class Player
+    class player
     {
-        public Player() 
-        {
-            
-        }
+        public player() { }
 
-        public Player(string Name, int Health, int Strenght)
+        public player(string Name, int Health, int Strenght)
         {
             this.Name = Name;
             this.Health = Health;
             this.Strenght = Strenght;
+            Advantage = 3;
         }
-        public Player(string Name, int Health, int Strenght, int Strikes, int Damage)
+        public player(string Name, int Health, int Strenght, int Strikes, int Damage, int Points)
         {
             this.Name = Name;
             this.Health = Health;
@@ -37,11 +34,12 @@ namespace Players
         public int TotalDmg { get; set; }
         public int FightDmg { get; set; }
         public int Round { get; set; }
+        public int Advantage { get; set; }
 
         // methods to calculate damage // TODO random for damage calculation???
         public int Fist()
         {
-            int dmg =  Strenght/2;
+            int dmg = Strenght / 2;
             return dmg;
         }
 
@@ -58,19 +56,6 @@ namespace Players
         }
 
         public List<String> EnemyNames = new List<String>();
-        public List<String> ItemList = new List<String>();
-
-        public void Itemlist()
-        {
-            EnemyNames.Add("Helm"); //+1 v
-            EnemyNames.Add("Chest"); // +2v
-            EnemyNames.Add("Gloves"); // +1d
-            EnemyNames.Add("Legs");  // +1v
-            EnemyNames.Add("Shoes"); //+1v
-            EnemyNames.Add("Sword"); // +2d
-            EnemyNames.Add("Shield"); //+2v
-        }
-
 
         public void EnemyNamelist()
         {
