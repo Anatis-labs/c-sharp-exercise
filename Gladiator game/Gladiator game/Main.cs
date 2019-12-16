@@ -116,6 +116,8 @@ namespace GladiatorGame
                 Console.WriteLine("Choise 3: Enemy list");
                 Console.WriteLine("Choise 4: Statistics");
                 Console.WriteLine("Choise 5: Armors and Weapons COMING SOON!!!");
+                Console.WriteLine("choise 6: Save highscore");
+                Console.WriteLine("choise 7: Show highscore");
                 Console.WriteLine("Choise 9: Exit the game, and save enemys slayed");
                 Console.WriteLine("------------------------------------------------------");
                 try
@@ -145,18 +147,50 @@ namespace GladiatorGame
                         break;
 
                     case 3:
-                        Console.WriteLine();
-                        Console.WriteLine($"Enemys left: {Gladiator.EnemyNames.Count}");
-                        foreach (var item in Gladiator.EnemyNames)
-                        {
-                            Console.WriteLine(item);
-                        }
+                        int count = 0;
                         Console.WriteLine();
                         Console.WriteLine($"Enemys slaughtered: {Slaughter.Slaughtered.Count}");
                         foreach (var item in Slaughter.Slaughtered)
                         {
                             Console.WriteLine(item);
+                            count++;
                         }
+
+                        int level = count;
+
+                        
+
+
+
+                        Console.WriteLine();
+                        Console.WriteLine($"Enemys left: {Gladiator.EnemyNames.Count}");
+                        foreach (var item in Gladiator.EnemyNames)
+                        {
+                            if (count < 3 || level == 0)
+                            {
+                                Console.WriteLine("Level 1: ");
+                                //count = 3;
+                            }
+                            if (count >= 3 && count < 5|| level == 3)
+                            {
+                                Console.WriteLine("Level 2: ");
+                                //count = 6;
+                            }
+                            if (count >= 6 && count < 9 || level == 6)
+                            {
+                                Console.WriteLine("Level 3: ");
+                                //count = 9;
+                            }
+                            if (count > 9 || level == 9)
+                            {
+                                Console.WriteLine("Final boss: ");
+                                //count = 10;
+                            }
+                            Console.WriteLine(item);
+                            count = 10;
+                            level++;
+                        }
+                        count = 0;
                         break;
 
                     case 4:
@@ -164,8 +198,15 @@ namespace GladiatorGame
                         break;
                     case 5:
                         items.Display_A_W(Gladiator);
-                        break;                       
+                        break;
+                    case 6:
+                        save.SaveScore(Gladiator.Name, S.Points);
 
+                        break;
+                    case 7:
+                        save.Import();
+
+                        break;
                     case 9:
                         save.SaveStats(Gladiator.Name, S.Points ,Slaughter.Slaughtered);
 
