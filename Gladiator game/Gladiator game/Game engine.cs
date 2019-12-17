@@ -106,7 +106,7 @@ namespace GladiatorGame
                     Console.WriteLine($"{P2.Name} slaughtered!");
                     P2.Health = 0;
                     P1.Wins++;
-                    
+
                     Console.WriteLine($"With {P1.Strikes} strikes!");
                     Console.WriteLine($"{P1.Name} has won {P1.Wins} times");
                     Console.WriteLine($"Total damage by {P1.Name} was {P1.FightDmg}");
@@ -206,7 +206,7 @@ namespace GladiatorGame
                         Gladiator.Strenght = rnd.Next(5, 10);
                     }
                     break;
-                }                
+                }
                 if (P1 == Gladiator)
                 {
                     P1 = Opponent;

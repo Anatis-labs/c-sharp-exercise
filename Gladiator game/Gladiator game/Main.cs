@@ -158,7 +158,7 @@ namespace GladiatorGame
 
                         int level = count;
 
-                        
+
 
 
 
@@ -171,7 +171,7 @@ namespace GladiatorGame
                                 Console.WriteLine("Level 1: ");
                                 //count = 3;
                             }
-                            if (count >= 3 && count < 5|| level == 3)
+                            if (count >= 3 && count < 5 || level == 3)
                             {
                                 Console.WriteLine("Level 2: ");
                                 //count = 6;
@@ -204,11 +204,11 @@ namespace GladiatorGame
 
                         break;
                     case 7:
-                        save.Import();
+                        save.Highscore();
 
                         break;
                     case 9:
-                        save.SaveStats(Gladiator.Name, S.Points ,Slaughter.Slaughtered);
+                        save.SaveStats(Gladiator.Name, S.Points, Slaughter.Slaughtered);
 
                         loop = false;
                         break;

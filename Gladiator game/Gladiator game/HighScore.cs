@@ -6,12 +6,13 @@ namespace Gladiator_game
 {
     class HighScore
     {
-        public HighScore()
+        public HighScore(int greger,string greta)
         {
-            Score = new List<String>();
+            Points = greger;
+            Name = greta;
         }
         //public List<HighScore> Score {get; set;}
-        public List<String> Score {get; set;}
+       // public List<String> Score {get; set;}
         public int Points { get; set; }
         public string Name { get; set; }
     }
